@@ -1,5 +1,27 @@
 syntax = "proto3";
 
+message File {
+    string user_id = 1;
+    string file_path = 2;
+}
+
+message Component {
+    int32 id = 1;
+    int32 parent_id = 2;
+    repeated int32 children_ids = 3;
+    int32 start_line = 4;
+    int32 start_column = 5;
+    int32 end_line = 6;
+    int32 end_column = 7;
+    string type = 8;
+}
+
+message FileStructure {
+    repeated Component blocks = 1;
+    repeated Component classes = 2;
+    repeated Component methods = 3;
+}
 
 service FileStructureService {
+    rpc ExtractStructure(stream File) returns (stream FileStructure);
 }
