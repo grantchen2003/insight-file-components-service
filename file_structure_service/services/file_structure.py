@@ -3,7 +3,7 @@ from file_structure_service.protobufs import (
     file_structure_service_pb2,
 )
 
-from database import Database
+from file_structure_service.database import FileChunksDatabase
 
 
 class FileStructure(file_structure_service_pb2_grpc.FileStructureServiceServicer):
@@ -12,7 +12,11 @@ class FileStructure(file_structure_service_pb2_grpc.FileStructureServiceServicer
         for request in requests:
             print(request.user_id, request.file_path)
             
-            file_chunks = Database.getFileChunks(request.user_id, request.file_path)
+            file_chunks = FileChunksDatabase.get_file_chunks(request.user_id, request.file_path)
+            
+            for file_chunk in file_chunks:
+                print(file_chunk)
+                
             # why should it be stream vs repeated in proto file
             
             # with repeated (i can make 1 massive request to db)
