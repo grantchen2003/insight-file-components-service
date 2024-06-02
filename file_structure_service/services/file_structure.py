@@ -3,6 +3,8 @@ from file_structure_service.protobufs import (
     file_structure_service_pb2,
 )
 
+from database import Database
+
 
 class FileStructure(file_structure_service_pb2_grpc.FileStructureServiceServicer):
     def ExtractStructure(self, requests, context):
@@ -10,6 +12,7 @@ class FileStructure(file_structure_service_pb2_grpc.FileStructureServiceServicer
         for request in requests:
             print(request.user_id, request.file_path)
             
+            file_chunks = Database.getFileChunks(request.user_id, request.file_path)
             # why should it be stream vs repeated in proto file
             
             # with repeated (i can make 1 massive request to db)
@@ -20,7 +23,5 @@ class FileStructure(file_structure_service_pb2_grpc.FileStructureServiceServicer
             # parse it
             
             # return parsed blocks to client
-            response = file_structure_service_pb2.FileStructure(
-                blocks=[], classes=[], methods=[]
-            )
+            response = file_structure_service_pb2.FileStructure()
             yield response
