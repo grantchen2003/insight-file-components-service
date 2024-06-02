@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ../file_structure_service/protobufs
+
 python -m grpc_tools.protoc -I . --python_out=. --grpc_python_out=. *.proto
 
 # Add "from . " to all lines that match "import *_pb2"
