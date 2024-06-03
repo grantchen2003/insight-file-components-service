@@ -1,13 +1,14 @@
 syntax = "proto3";
 
-message File {
+message Files {
     string user_id = 1;
-    string file_path = 2;
+    repeated string file_paths = 2;
 }
 
 message FileStructure {
+    string file_path = 1;
 }
 
 service FileStructureService {
-    rpc ExtractStructure(stream File) returns (stream FileStructure);
+    rpc ExtractStructure(Files) returns (stream FileStructure);
 }

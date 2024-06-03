@@ -1,3 +1,5 @@
+import base64
+
 from file_structure_service.protobufs import (
     file_structure_service_pb2_grpc,
     file_structure_service_pb2,
@@ -7,15 +9,27 @@ from file_structure_service.database import FileChunksDatabase
 
 
 class FileStructure(file_structure_service_pb2_grpc.FileStructureServiceServicer):
-    def ExtractStructure(self, requests, context):
+    def ExtractStructure(self, request, context):
         print("ExtractStructure request received")
-        for request in requests:
-            print(request.user_id, request.file_path)
+        
+        user_id = request.user_id
+        file_paths = request.file_paths
+        
+        print(user_id, file_paths)
+        
+        for file_path in file_paths:
+            # print(request.user_id, request.file_path)
             
-            file_chunks = FileChunksDatabase.get_file_chunks(request.user_id, request.file_path)
+            # file_chunks = FileChunksDatabase.get_file_chunks(request.user_id, request.file_path)
             
-            for file_chunk in file_chunks:
-                print(file_chunk)
+            # file_content = ""
+            
+            # sorted_file_chunks = sorted(file_chunks, key = lambda file_chunk: file_chunk["contentchunkindex"])
+            # decoded_contents = [base64.b64decode(file_chunk["content"]).decode("utf-8") for file_chunk in sorted_file_chunks]
+            # file_content = "".join(decoded_contents)
+            
+            # print(file_content)
+            
                 
             # why should it be stream vs repeated in proto file
             
@@ -27,5 +41,5 @@ class FileStructure(file_structure_service_pb2_grpc.FileStructureServiceServicer
             # parse it
             
             # return parsed blocks to client
-            response = file_structure_service_pb2.FileStructure()
+            response = file_structure_service_pb2.FileStructure(file_path=file_path)
             yield response
