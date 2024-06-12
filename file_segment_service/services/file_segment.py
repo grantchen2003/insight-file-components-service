@@ -13,10 +13,8 @@ class FileSegment(file_segment_service_pb2_grpc.FileSegmentServiceServicer):
         print("ExtractStructure request received")
 
         for file_path in request.file_paths:
-            file_chunks = FileChunksDatabase.get_file_chunks(request.user_id, file_path)
-
-            sorted_file_chunks = sorted(
-                file_chunks, key=lambda file_chunk: file_chunk["contentchunkindex"]
+            sorted_file_chunks = FileChunksDatabase.get_sorted_file_chunks(
+                request.user_id, file_path, "contentchunkindex"
             )
 
             decoded_contents = [
@@ -33,15 +31,4 @@ class FileSegment(file_segment_service_pb2_grpc.FileSegmentServiceServicer):
                     end_line=file_segment["end_line"],
                 )
 
-            # print(file_content)
-
-            # why should it be stream vs repeated in proto file
-
-            # with repeated (i can make 1 massive request to db)
-
             # but what if request is too big, batch again ? (use the fact the documents themselves r alr somewhat batched)
-            # fetch file from db (note that they are in chunks lmfao)
-
-            # parse it
-
-            # return parsed blocks to client
