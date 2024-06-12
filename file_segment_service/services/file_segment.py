@@ -11,6 +11,8 @@ from file_segment_service import utils
 class FileSegment(file_segment_service_pb2_grpc.FileSegmentServiceServicer):
     def ExtractStructure(self, request, context):
         print("ExtractStructure request received")
+        
+        # make this concurrent/parallel
 
         for file_path in request.file_paths:
             sorted_file_chunks = FileChunksDatabase.get_sorted_file_chunks(
@@ -30,5 +32,3 @@ class FileSegment(file_segment_service_pb2_grpc.FileSegmentServiceServicer):
                     start_line=file_segment["start_line"],
                     end_line=file_segment["end_line"],
                 )
-
-            # but what if request is too big, batch again ? (use the fact the documents themselves r alr somewhat batched)
