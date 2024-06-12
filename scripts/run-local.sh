@@ -4,4 +4,4 @@ cd ..
 
 export ENV=dev
 
-nodemon --exec ".venv/Scripts/python -m file_structure_service.main" --ext py
+nodemon --exec ".venv/Scripts/python -m file_segment_service.main" --ext py
