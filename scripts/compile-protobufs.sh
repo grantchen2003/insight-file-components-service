@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ../file_structure_service/protobufs
+cd ../file_segment_service/protobufs
 
 python -m grpc_tools.protoc -I . --python_out=. --grpc_python_out=. *.proto
 
