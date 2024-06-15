@@ -1,7 +1,7 @@
 import ast
 
 
-def extract_file_structure(source_code: str) -> list[dict]:
+def extract_file_components(source_code: str) -> list[dict]:
     return [
         {
             "start_line": node.lineno,

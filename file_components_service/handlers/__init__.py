@@ -1,1 +1,1 @@
-from .handler import FileSegment
+from .handler import FileComponentServicer

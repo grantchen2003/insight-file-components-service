@@ -1,7 +1,7 @@
 import concurrent, grpc, os
 
 from file_components_service.protobufs import file_components_service_pb2_grpc
-from file_components_service.handlers import FileSegment
+from file_components_service.handlers import FileComponentServicer
 
 
 def start():
@@ -11,7 +11,7 @@ def start():
     )
 
     file_components_service_pb2_grpc.add_FileComponentsServiceServicer_to_server(
-        FileSegment(), server
+        FileComponentServicer(), server
     )
 
     address = f"{os.environ['DOMAIN']}:{os.environ['PORT']}"
