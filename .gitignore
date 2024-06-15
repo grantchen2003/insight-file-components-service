@@ -2,5 +2,3 @@
 .env.prod
 .venv
 __pycache__
-*_pb2_grpc.py
-*_pb2.py

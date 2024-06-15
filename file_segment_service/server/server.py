@@ -1,7 +1,7 @@
 import concurrent, grpc, os
 
 from file_segment_service.protobufs import file_segment_service_pb2_grpc
-from file_segment_service.services import FileSegment
+from file_segment_service.handlers import FileSegment
 
 
 def start():

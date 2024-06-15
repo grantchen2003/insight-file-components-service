@@ -8,8 +8,10 @@ __ENV_FILES = {
 
 
 def load_env_var():
-    file_path = os.path.dirname(os.path.abspath(__file__))
     env = os.environ.get("ENV")
+    
     env_file = __ENV_FILES[env]
-    load_dotenv(os.path.join(file_path, env_file))
+    
+    load_dotenv(os.path.join(os.getcwd(), env_file))
+    
     print(f"ENV = {env}")

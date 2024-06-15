@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+message FileChunkPayload {
+    string user_id = 1;
+    string file_path = 2;
+    int32 chunk_index = 3;
+    int32 num_total_chunks = 4;
+    string content = 5;
+}
+
+
+message SaveFileChunksRequest {
+    repeated FileChunkPayload file_chunk_payloads = 1;
+}
+
+
+message FileChunkSaveStatus {
+    string file_path = 1;
+    bool is_last_saved_chunk = 2;
+}
+
+
+message SaveFileChunksResponse {
+    repeated FileChunkSaveStatus file_chunk_statuses = 1;
+}
+
+
+message GetSortedFileChunksContentRequest {
+    string user_id = 1;
+    string file_path = 2;
+}
+
+message FileChunkContent {
+    string content = 1;
+}
+
+message GetSortedFileChunksContentResponse {
+    repeated FileChunkContent file_chunks_content = 1;
+}
+
+
+service FileChunksService {
+    rpc SaveFileChunks(SaveFileChunksRequest) returns (SaveFileChunksResponse);
+    rpc GetSortedFileChunksContent(GetSortedFileChunksContentRequest) returns (GetSortedFileChunksContentResponse);
+}
