@@ -1,8 +1,13 @@
+import os
+
 from file_components_service import config, server
 
 
 def main() -> None:
-    config.load_env_var()
+    env = os.environ.get("ENV")
+    config.load_env_vars(env)
+    print(f"ENV={env}")
+    
     server.start()
 
 

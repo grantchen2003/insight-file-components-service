@@ -7,11 +7,9 @@ __ENV_FILES = {
 }
 
 
-def load_env_var():
-    env = os.environ.get("ENV")
-    
-    env_file = __ENV_FILES[env]
-    
-    load_dotenv(os.path.join(os.getcwd(), env_file))
-    
-    print(f"ENV = {env}")
+def load_env_vars(env: str):
+    if env not in __ENV_FILES:
+        raise ValueError("no env matched")
+
+    env_file_path = os.path.join(os.getcwd(), __ENV_FILES[env])
+    load_dotenv(env_file_path)

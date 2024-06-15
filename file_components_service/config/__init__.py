@@ -1,1 +1,1 @@
-from .config import load_env_var
+from .config import load_env_vars
