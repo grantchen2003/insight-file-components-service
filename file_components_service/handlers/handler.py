@@ -1,15 +1,17 @@
 import concurrent.futures
 
+from file_components_service import utils
+from file_components_service.services import file_chunks_service
 from file_components_service.protobufs import (
     file_components_service_pb2,
     file_components_service_pb2_grpc,
 )
-from file_components_service import utils
-from file_components_service.services import file_chunks_service
 
 
-class FileComponentServicer(file_components_service_pb2_grpc.FileComponentsServiceServicer):
-    def ExtractFilesComponents(self, request, context):
+class FileComponentServicer(
+    file_components_service_pb2_grpc.FileComponentsServiceServicer
+):
+    def ExtractFilesComponents(self, request, _):
         print("received ExtractFilesComponents request")
 
         def extract_file_components(
@@ -20,6 +22,7 @@ class FileComponentServicer(file_components_service_pb2_grpc.FileComponentsServi
                     request.user_id, file_path
                 )
             )
+
             source_code = "".join(
                 file_chunk_content.decode("utf-8")
                 for file_chunk_content in sorted_file_chunks_content

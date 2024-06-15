@@ -1,10 +1,10 @@
 import concurrent, grpc, os
 
-from file_components_service.protobufs import file_components_service_pb2_grpc
 from file_components_service.handlers import FileComponentServicer
+from file_components_service.protobufs import file_components_service_pb2_grpc
 
 
-def start():
+def start() -> None:
     server = grpc.server(
         concurrent.futures.ThreadPoolExecutor(),
         options=[("grpc.max_receive_message_length", -1)],

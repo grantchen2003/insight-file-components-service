@@ -7,7 +7,7 @@ __ENV_FILES = {
 }
 
 
-def load_env_vars(env: str):
+def load_env_vars(env: str) -> None:
     if env not in __ENV_FILES:
         raise ValueError("no env matched")
 
