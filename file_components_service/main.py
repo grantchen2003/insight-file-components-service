@@ -1,4 +1,4 @@
-from file_segment_service import config, server
+from file_components_service import config, server
 
 
 def main() -> None:

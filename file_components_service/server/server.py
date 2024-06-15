@@ -1,7 +1,7 @@
 import concurrent, grpc, os
 
-from file_segment_service.protobufs import file_segment_service_pb2_grpc
-from file_segment_service.handlers import FileSegment
+from file_components_service.protobufs import file_components_service_pb2_grpc
+from file_components_service.handlers import FileSegment
 
 
 def start():
@@ -10,7 +10,7 @@ def start():
         options=[("grpc.max_receive_message_length", -1)],
     )
 
-    file_segment_service_pb2_grpc.add_FileSegmentServiceServicer_to_server(
+    file_components_service_pb2_grpc.add_FileComponentsServiceServicer_to_server(
         FileSegment(), server
     )
 

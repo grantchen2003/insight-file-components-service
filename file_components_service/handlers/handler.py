@@ -1,14 +1,14 @@
 import concurrent.futures
 
-from file_segment_service.protobufs import (
-    file_segment_service_pb2,
-    file_segment_service_pb2_grpc,
+from file_components_service.protobufs import (
+    file_components_service_pb2,
+    file_components_service_pb2_grpc,
 )
-from file_segment_service import utils
-from file_segment_service.services import file_chunks_service
+from file_components_service import utils
+from file_components_service.services import file_chunks_service
 
 
-class FileSegment(file_segment_service_pb2_grpc.FileSegmentServiceServicer):
+class FileSegment(file_components_service_pb2_grpc.FileComponentsServiceServicer):
     def ExtractStructure(self, request, context):
         print("ExtractStructure request received")
 
@@ -22,7 +22,7 @@ class FileSegment(file_segment_service_pb2_grpc.FileSegmentServiceServicer):
             print(source_code)
 
             return [
-                file_segment_service_pb2.FileSegment(
+                file_components_service_pb2.FileComponent(
                     file_path=file_path,
                     start_line=file_segment["start_line"],
                     end_line=file_segment["end_line"],
