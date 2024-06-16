@@ -11,5 +11,13 @@ class FileComponent(TypedDict):
 
 class BaseDatabase(ABC):
     @abstractmethod
-    def save_file_components(self, file_components: list[FileComponent]) -> list[str]:
+    def connect(self) -> None:
+        pass
+
+    @abstractmethod
+    def close(self) -> None:
+        pass
+
+    @abstractmethod
+    def save_file_components(self, file_components: list[FileComponent]) -> list[int]:
         pass

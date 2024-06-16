@@ -17,7 +17,7 @@ message SaveFileComponentsRequest {
 }
 
 message SaveFileComponentsResponse {
-    repeated string file_component_ids = 1;
+    repeated int32 file_component_ids = 1;
 }
 
 service FileComponentsService {

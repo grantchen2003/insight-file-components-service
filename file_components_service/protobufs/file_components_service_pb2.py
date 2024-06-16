@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66ile_components_service.proto\",\n\x05\x46iles\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t\"H\n\rFileComponent\x12\x11\n\tfile_path\x18\x01 \x01(\t\x12\x12\n\nstart_line\x18\x02 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x03 \x01(\x05\"U\n\x19SaveFileComponentsRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\'\n\x0f\x66ile_components\x18\x02 \x03(\x0b\x32\x0e.FileComponent\"8\n\x1aSaveFileComponentsResponse\x12\x1a\n\x12\x66ile_component_ids\x18\x01 \x03(\t2\x9a\x01\n\x15\x46ileComponentsService\x12\x32\n\x16\x45xtractFilesComponents\x12\x06.Files\x1a\x0e.FileComponent0\x01\x12M\n\x12SaveFileComponents\x12\x1a.SaveFileComponentsRequest\x1a\x1b.SaveFileComponentsResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66ile_components_service.proto\",\n\x05\x46iles\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t\"H\n\rFileComponent\x12\x11\n\tfile_path\x18\x01 \x01(\t\x12\x12\n\nstart_line\x18\x02 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x03 \x01(\x05\"U\n\x19SaveFileComponentsRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\'\n\x0f\x66ile_components\x18\x02 \x03(\x0b\x32\x0e.FileComponent\"8\n\x1aSaveFileComponentsResponse\x12\x1a\n\x12\x66ile_component_ids\x18\x01 \x03(\x05\x32\x9a\x01\n\x15\x46ileComponentsService\x12\x32\n\x16\x45xtractFilesComponents\x12\x06.Files\x1a\x0e.FileComponent0\x01\x12M\n\x12SaveFileComponents\x12\x1a.SaveFileComponentsRequest\x1a\x1b.SaveFileComponentsResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
