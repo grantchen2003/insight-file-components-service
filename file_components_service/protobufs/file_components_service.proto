@@ -11,6 +11,16 @@ message FileComponent {
     int32 end_line = 3;
 }
 
+message SaveFileComponentsRequest {
+    string user_id = 1;
+    repeated FileComponent file_components = 2;
+}
+
+message SaveFileComponentsResponse {
+    repeated string file_component_ids = 1;
+}
+
 service FileComponentsService {
     rpc ExtractFilesComponents(Files) returns (stream FileComponent);
+    rpc SaveFileComponents(SaveFileComponentsRequest) returns (SaveFileComponentsResponse);
 }

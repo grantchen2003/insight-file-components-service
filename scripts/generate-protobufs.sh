@@ -12,7 +12,9 @@ for dir in */ ; do
     if [ -d "$dir" ]; then
         echo "Entering directory: $dir"
         cd "$dir" || exit
-        mkdir pb
+        if [ ! -d "pb" ]; then
+            mkdir pb
+        fi
         # Execute the specified command
         python -m grpc_tools.protoc -I . --python_out=./pb/ --grpc_python_out=./pb/ *.proto
         # Return to the parent directory

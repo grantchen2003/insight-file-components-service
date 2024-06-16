@@ -1,6 +1,6 @@
 import concurrent.futures
 
-from file_components_service import utils
+from file_components_service import database, utils
 from file_components_service.services import file_chunks_service
 from file_components_service.protobufs import (
     file_components_service_pb2,
@@ -11,6 +11,27 @@ from file_components_service.protobufs import (
 class FileComponentServicer(
     file_components_service_pb2_grpc.FileComponentsServiceServicer
 ):
+    def SaveFileComponents(self, request, _):
+        print("received SaveFileComponents request")
+
+        file_components = [
+            {
+                "user_id": request.user_id,
+                "file_path": file_component.file_path,
+                "start_line": file_component.start_line,
+                "end_line": file_component.end_line,
+            }
+            for file_component in request.file_components
+        ]
+
+        db = database.get_singleton_instance()
+        
+        file_component_ids = db.save_file_components(file_components)
+
+        return file_components_service_pb2.SaveFileComponentsResponse(
+            file_component_ids=file_component_ids
+        )
+
     def ExtractFilesComponents(self, request, _):
         print("received ExtractFilesComponents request")
 
