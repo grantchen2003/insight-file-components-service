@@ -1,6 +1,5 @@
 import os, psycopg2
 
-from file_components_service.database.base_database import FileComponent
 from .base_database import BaseDatabase
 
 
@@ -24,7 +23,29 @@ class PostgreSql(BaseDatabase):
         self._cursor.close()
         self._connection.close()
 
-    def save_file_components(self, file_components: list[FileComponent]) -> list[int]:
+    def get_file_components(self, file_component_ids: list[int]) -> list[dict]:
+        file_component_ids_str = ",".join(str(id) for id in file_component_ids)
+
+        select_query = (
+            f"SELECT * FROM file_components WHERE id IN ({file_component_ids_str});"
+        )
+
+        self._cursor.execute(select_query)
+
+        file_components = [
+            {
+                "id": id,
+                "user_id": user_id,
+                "file_path": file_path,
+                "start_line": start_line,
+                "end_line": end_line,
+            }
+            for id, user_id, file_path, start_line, end_line in self._cursor.fetchall()
+        ]
+
+        return file_components
+
+    def save_file_components(self, file_components: list[dict]) -> list[int]:
         self._ensure_file_components_table_exists()
 
         file_component_tuples = [

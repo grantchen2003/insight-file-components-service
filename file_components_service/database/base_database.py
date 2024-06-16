@@ -1,12 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import TypedDict
-
-
-class FileComponent(TypedDict):
-    user_id: str
-    file_path: str
-    start_line: int
-    end_line: int
 
 
 class BaseDatabase(ABC):
@@ -19,5 +11,9 @@ class BaseDatabase(ABC):
         pass
 
     @abstractmethod
-    def save_file_components(self, file_components: list[FileComponent]) -> list[int]:
+    def save_file_components(self, file_components: list[dict]) -> list[int]:
+        pass
+
+    @abstractmethod
+    def get_file_components(self, file_component_ids: list[int]) -> list[dict]:
         pass

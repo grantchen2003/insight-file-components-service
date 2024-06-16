@@ -49,6 +49,11 @@ class FileComponentsServiceStub(object):
                 request_serializer=file__components__service__pb2.SaveFileComponentsRequest.SerializeToString,
                 response_deserializer=file__components__service__pb2.SaveFileComponentsResponse.FromString,
                 _registered_method=True)
+        self.GetSavedFileComponents = channel.unary_unary(
+                '/FileComponentsService/GetSavedFileComponents',
+                request_serializer=file__components__service__pb2.GetSavedFileComponentsRequest.SerializeToString,
+                response_deserializer=file__components__service__pb2.GetSavedFileComponentsResponse.FromString,
+                _registered_method=True)
 
 
 class FileComponentsServiceServicer(object):
@@ -66,6 +71,12 @@ class FileComponentsServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetSavedFileComponents(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FileComponentsServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -78,6 +89,11 @@ def add_FileComponentsServiceServicer_to_server(servicer, server):
                     servicer.SaveFileComponents,
                     request_deserializer=file__components__service__pb2.SaveFileComponentsRequest.FromString,
                     response_serializer=file__components__service__pb2.SaveFileComponentsResponse.SerializeToString,
+            ),
+            'GetSavedFileComponents': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSavedFileComponents,
+                    request_deserializer=file__components__service__pb2.GetSavedFileComponentsRequest.FromString,
+                    response_serializer=file__components__service__pb2.GetSavedFileComponentsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -134,6 +150,33 @@ class FileComponentsService(object):
             '/FileComponentsService/SaveFileComponents',
             file__components__service__pb2.SaveFileComponentsRequest.SerializeToString,
             file__components__service__pb2.SaveFileComponentsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetSavedFileComponents(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/FileComponentsService/GetSavedFileComponents',
+            file__components__service__pb2.GetSavedFileComponentsRequest.SerializeToString,
+            file__components__service__pb2.GetSavedFileComponentsResponse.FromString,
             options,
             channel_credentials,
             insecure,

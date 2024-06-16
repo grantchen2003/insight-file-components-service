@@ -20,7 +20,24 @@ message SaveFileComponentsResponse {
     repeated int32 file_component_ids = 1;
 }
 
+message SavedFileComponent {
+    int32 id = 1;
+    string user_id = 2;
+    string file_path = 3;
+    int32 start_line = 4;
+    int32 end_line = 5;
+}
+
+message GetSavedFileComponentsRequest {
+    repeated int32 file_component_ids = 1;
+}
+
+message GetSavedFileComponentsResponse {
+    repeated SavedFileComponent saved_file_components = 1;
+}
+
 service FileComponentsService {
     rpc ExtractFilesComponents(Files) returns (stream FileComponent);
     rpc SaveFileComponents(SaveFileComponentsRequest) returns (SaveFileComponentsResponse);
+    rpc GetSavedFileComponents(GetSavedFileComponentsRequest) returns (GetSavedFileComponentsResponse);
 }

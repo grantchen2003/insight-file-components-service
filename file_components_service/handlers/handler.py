@@ -11,6 +11,17 @@ from file_components_service.protobufs import (
 class FileComponentServicer(
     file_components_service_pb2_grpc.FileComponentsServiceServicer
 ):
+    def GetSavedFileComponents(self, request, _):
+        print("received GetFileComponents request")
+
+        db = database.get_singleton_instance()
+
+        saved_file_components = db.get_file_components(request.file_component_ids)
+
+        return file_components_service_pb2.GetSavedFileComponentsResponse(
+            saved_file_components=saved_file_components
+        )
+
     def SaveFileComponents(self, request, _):
         print("received SaveFileComponents request")
 
@@ -25,9 +36,9 @@ class FileComponentServicer(
         ]
 
         db = database.get_singleton_instance()
-        
+
         file_component_ids = db.save_file_components(file_components)
-        
+
         print(file_component_ids)
 
         return file_components_service_pb2.SaveFileComponentsResponse(
