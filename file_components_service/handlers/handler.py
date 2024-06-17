@@ -72,6 +72,8 @@ class FileComponentServicer(
         db = database.get_singleton_instance()
 
         saved_file_component_ids = db.save_file_components(file_components)
+        
+        print(saved_file_component_ids)
 
         return file_components_service_pb2.SavedFileComponentIds(
             saved_file_component_ids=saved_file_component_ids

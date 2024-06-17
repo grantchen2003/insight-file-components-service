@@ -68,7 +68,9 @@ class PostgreSql(BaseDatabase):
         self._cursor.execute(query)
 
         inserted_ids = [row[0] for row in self._cursor.fetchall()]
-
+        
+        self._connection.commit()
+        
         return inserted_ids
 
     def _ensure_file_components_table_exists(self) -> None:
