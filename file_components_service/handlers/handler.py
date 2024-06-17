@@ -28,6 +28,7 @@ class FileComponentServicer(
 
             return [
                 file_components_service_pb2.FileComponent(
+                    user_id=request.user_id,
                     file_path=file_path,
                     start_line=file_component["start_line"],
                     end_line=file_component["end_line"],
@@ -36,11 +37,13 @@ class FileComponentServicer(
             ]
 
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            for file_components in executor.map(
-                extract_file_components, request.file_paths
-            ):
-                for file_component in file_components:
-                    yield file_component
+            file_components = utils.flatten_list(
+                list(executor.map(extract_file_components, request.file_paths))
+            )
+
+        return file_components_service_pb2.FileComponents(
+            file_components=file_components
+        )
 
     def GetSavedFileComponents(self, request, _):
         print("received GetSavedFileComponents request")

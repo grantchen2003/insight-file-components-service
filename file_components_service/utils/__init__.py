@@ -1,1 +1,1 @@
-from .utils import extract_file_components
+from .utils import extract_file_components, flatten_list

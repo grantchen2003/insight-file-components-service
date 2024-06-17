@@ -23,7 +23,7 @@ message SavedFileComponents {
 }
 
 
-message SaveFileComponentsRequest {
+message FileComponents {
     repeated FileComponent file_components = 1;
 }
 
@@ -39,7 +39,7 @@ message SavedFileComponentIds {
 }
 
 service FileComponentsService {
-    rpc BatchExtractFileComponents(BatchExtractFileComponentsRequest) returns (stream FileComponent);
+    rpc BatchExtractFileComponents(BatchExtractFileComponentsRequest) returns (FileComponents);
+    rpc SaveFileComponents(FileComponents) returns (SavedFileComponentIds);
     rpc GetSavedFileComponents(SavedFileComponentIds) returns (SavedFileComponents);
-    rpc SaveFileComponents(SaveFileComponentsRequest) returns (SavedFileComponentIds);
 }
