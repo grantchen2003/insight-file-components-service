@@ -14,27 +14,25 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66ile_components_service.proto\",\n\x05\x46iles\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t\"H\n\rFileComponent\x12\x11\n\tfile_path\x18\x01 \x01(\t\x12\x12\n\nstart_line\x18\x02 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x03 \x01(\x05\"U\n\x19SaveFileComponentsRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\'\n\x0f\x66ile_components\x18\x02 \x03(\x0b\x32\x0e.FileComponent\"8\n\x1aSaveFileComponentsResponse\x12\x1a\n\x12\x66ile_component_ids\x18\x01 \x03(\x05\"j\n\x12SavedFileComponent\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x11\n\tfile_path\x18\x03 \x01(\t\x12\x12\n\nstart_line\x18\x04 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x05 \x01(\x05\";\n\x1dGetSavedFileComponentsRequest\x12\x1a\n\x12\x66ile_component_ids\x18\x01 \x03(\x05\"T\n\x1eGetSavedFileComponentsResponse\x12\x32\n\x15saved_file_components\x18\x01 \x03(\x0b\x32\x13.SavedFileComponent2\xf5\x01\n\x15\x46ileComponentsService\x12\x32\n\x16\x45xtractFilesComponents\x12\x06.Files\x1a\x0e.FileComponent0\x01\x12M\n\x12SaveFileComponents\x12\x1a.SaveFileComponentsRequest\x1a\x1b.SaveFileComponentsResponse\x12Y\n\x16GetSavedFileComponents\x12\x1e.GetSavedFileComponentsRequest\x1a\x1f.GetSavedFileComponentsResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66ile_components_service.proto\"Y\n\rFileComponent\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x11\n\tfile_path\x18\x02 \x01(\t\x12\x12\n\nstart_line\x18\x03 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x04 \x01(\x05\"j\n\x12SavedFileComponent\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x11\n\tfile_path\x18\x03 \x01(\t\x12\x12\n\nstart_line\x18\x04 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x05 \x01(\x05\"I\n\x13SavedFileComponents\x12\x32\n\x15saved_file_components\x18\x01 \x03(\x0b\x32\x13.SavedFileComponent\"D\n\x19SaveFileComponentsRequest\x12\'\n\x0f\x66ile_components\x18\x01 \x03(\x0b\x32\x0e.FileComponent\"H\n!BatchExtractFileComponentsRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t\"9\n\x15SavedFileComponentIds\x12 \n\x18saved_file_component_ids\x18\x01 \x03(\x05\x32\xfd\x01\n\x15\x46ileComponentsService\x12R\n\x1a\x42\x61tchExtractFileComponents\x12\".BatchExtractFileComponentsRequest\x1a\x0e.FileComponent0\x01\x12\x46\n\x16GetSavedFileComponents\x12\x16.SavedFileComponentIds\x1a\x14.SavedFileComponents\x12H\n\x12SaveFileComponents\x12\x1a.SaveFileComponentsRequest\x1a\x16.SavedFileComponentIdsb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'file_components_service_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_FILES']._serialized_start=33
-  _globals['_FILES']._serialized_end=77
-  _globals['_FILECOMPONENT']._serialized_start=79
-  _globals['_FILECOMPONENT']._serialized_end=151
-  _globals['_SAVEFILECOMPONENTSREQUEST']._serialized_start=153
-  _globals['_SAVEFILECOMPONENTSREQUEST']._serialized_end=238
-  _globals['_SAVEFILECOMPONENTSRESPONSE']._serialized_start=240
-  _globals['_SAVEFILECOMPONENTSRESPONSE']._serialized_end=296
-  _globals['_SAVEDFILECOMPONENT']._serialized_start=298
-  _globals['_SAVEDFILECOMPONENT']._serialized_end=404
-  _globals['_GETSAVEDFILECOMPONENTSREQUEST']._serialized_start=406
-  _globals['_GETSAVEDFILECOMPONENTSREQUEST']._serialized_end=465
-  _globals['_GETSAVEDFILECOMPONENTSRESPONSE']._serialized_start=467
-  _globals['_GETSAVEDFILECOMPONENTSRESPONSE']._serialized_end=551
-  _globals['_FILECOMPONENTSSERVICE']._serialized_start=554
-  _globals['_FILECOMPONENTSSERVICE']._serialized_end=799
+  _globals['_FILECOMPONENT']._serialized_start=33
+  _globals['_FILECOMPONENT']._serialized_end=122
+  _globals['_SAVEDFILECOMPONENT']._serialized_start=124
+  _globals['_SAVEDFILECOMPONENT']._serialized_end=230
+  _globals['_SAVEDFILECOMPONENTS']._serialized_start=232
+  _globals['_SAVEDFILECOMPONENTS']._serialized_end=305
+  _globals['_SAVEFILECOMPONENTSREQUEST']._serialized_start=307
+  _globals['_SAVEFILECOMPONENTSREQUEST']._serialized_end=375
+  _globals['_BATCHEXTRACTFILECOMPONENTSREQUEST']._serialized_start=377
+  _globals['_BATCHEXTRACTFILECOMPONENTSREQUEST']._serialized_end=449
+  _globals['_SAVEDFILECOMPONENTIDS']._serialized_start=451
+  _globals['_SAVEDFILECOMPONENTIDS']._serialized_end=508
+  _globals['_FILECOMPONENTSSERVICE']._serialized_start=511
+  _globals['_FILECOMPONENTSSERVICE']._serialized_end=764
 # @@protoc_insertion_point(module_scope)

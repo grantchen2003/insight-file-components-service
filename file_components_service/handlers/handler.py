@@ -1,56 +1,20 @@
 import concurrent.futures
 
 from file_components_service import database, utils
-from file_components_service.services import file_chunks_service
 from file_components_service.protobufs import (
     file_components_service_pb2,
     file_components_service_pb2_grpc,
 )
+from file_components_service.services import file_chunks_service
 
 
 class FileComponentServicer(
     file_components_service_pb2_grpc.FileComponentsServiceServicer
 ):
-    def GetSavedFileComponents(self, request, _):
-        print("received GetFileComponents request")
+    def BatchExtractFileComponents(self, request, _):
+        print("received BatchExtractFileComponents request")
 
-        db = database.get_singleton_instance()
-
-        saved_file_components = db.get_file_components(request.file_component_ids)
-
-        return file_components_service_pb2.GetSavedFileComponentsResponse(
-            saved_file_components=saved_file_components
-        )
-
-    def SaveFileComponents(self, request, _):
-        print("received SaveFileComponents request")
-
-        file_components = [
-            {
-                "user_id": request.user_id,
-                "file_path": file_component.file_path,
-                "start_line": file_component.start_line,
-                "end_line": file_component.end_line,
-            }
-            for file_component in request.file_components
-        ]
-
-        db = database.get_singleton_instance()
-
-        file_component_ids = db.save_file_components(file_components)
-
-        print(file_component_ids)
-
-        return file_components_service_pb2.SaveFileComponentsResponse(
-            file_component_ids=file_component_ids
-        )
-
-    def ExtractFilesComponents(self, request, _):
-        print("received ExtractFilesComponents request")
-
-        def extract_file_components(
-            file_path: str,
-        ) -> list[file_components_service_pb2.FileComponent]:
+        def extract_file_components(file_path: str):
             sorted_file_chunks_content = (
                 file_chunks_service.get_sorted_file_chunks_content(
                     request.user_id, file_path
@@ -77,3 +41,35 @@ class FileComponentServicer(
             ):
                 for file_component in file_components:
                     yield file_component
+
+    def GetSavedFileComponents(self, request, _):
+        print("received GetSavedFileComponents request")
+
+        db = database.get_singleton_instance()
+
+        saved_file_components = db.get_file_components(request.saved_file_component_ids)
+
+        return file_components_service_pb2.SavedFileComponents(
+            saved_file_components=saved_file_components
+        )
+
+    def SaveFileComponents(self, request, _):
+        print("received SaveFileComponents request")
+
+        file_components = [
+            {
+                "user_id": file_component.user_id,
+                "file_path": file_component.file_path,
+                "start_line": file_component.start_line,
+                "end_line": file_component.end_line,
+            }
+            for file_component in request.file_components
+        ]
+
+        db = database.get_singleton_instance()
+
+        saved_file_component_ids = db.save_file_components(file_components)
+
+        return file_components_service_pb2.SavedFileComponentIds(
+            saved_file_component_ids=saved_file_component_ids
+        )

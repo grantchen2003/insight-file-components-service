@@ -1,24 +1,13 @@
 syntax = "proto3";
 
-message Files {
-    string user_id = 1;
-    repeated string file_paths = 2;
-}
 
 message FileComponent {
-    string file_path = 1;
-    int32 start_line = 2;
-    int32 end_line = 3;
-}
-
-message SaveFileComponentsRequest {
     string user_id = 1;
-    repeated FileComponent file_components = 2;
+    string file_path = 2;
+    int32 start_line = 3;
+    int32 end_line = 4;
 }
 
-message SaveFileComponentsResponse {
-    repeated int32 file_component_ids = 1;
-}
 
 message SavedFileComponent {
     int32 id = 1;
@@ -28,16 +17,29 @@ message SavedFileComponent {
     int32 end_line = 5;
 }
 
-message GetSavedFileComponentsRequest {
-    repeated int32 file_component_ids = 1;
-}
 
-message GetSavedFileComponentsResponse {
+message SavedFileComponents {
     repeated SavedFileComponent saved_file_components = 1;
 }
 
+
+message SaveFileComponentsRequest {
+    repeated FileComponent file_components = 1;
+}
+
+
+message BatchExtractFileComponentsRequest {
+    string user_id = 1;
+    repeated string file_paths = 2;
+}
+
+
+message SavedFileComponentIds {
+    repeated int32 saved_file_component_ids = 1;
+}
+
 service FileComponentsService {
-    rpc ExtractFilesComponents(Files) returns (stream FileComponent);
-    rpc SaveFileComponents(SaveFileComponentsRequest) returns (SaveFileComponentsResponse);
-    rpc GetSavedFileComponents(GetSavedFileComponentsRequest) returns (GetSavedFileComponentsResponse);
+    rpc BatchExtractFileComponents(BatchExtractFileComponentsRequest) returns (stream FileComponent);
+    rpc GetSavedFileComponents(SavedFileComponentIds) returns (SavedFileComponents);
+    rpc SaveFileComponents(SaveFileComponentsRequest) returns (SavedFileComponentIds);
 }
