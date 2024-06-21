@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66ile_components_service.proto\"Y\n\rFileComponent\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x11\n\tfile_path\x18\x02 \x01(\t\x12\x12\n\nstart_line\x18\x03 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x04 \x01(\x05\"j\n\x12SavedFileComponent\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x11\n\tfile_path\x18\x03 \x01(\t\x12\x12\n\nstart_line\x18\x04 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x05 \x01(\x05\"I\n\x13SavedFileComponents\x12\x32\n\x15saved_file_components\x18\x01 \x03(\x0b\x32\x13.SavedFileComponent\"9\n\x0e\x46ileComponents\x12\'\n\x0f\x66ile_components\x18\x01 \x03(\x0b\x32\x0e.FileComponent\"H\n!BatchExtractFileComponentsRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t\"9\n\x15SavedFileComponentIds\x12 \n\x18saved_file_component_ids\x18\x01 \x03(\x05\x32\xf1\x01\n\x15\x46ileComponentsService\x12Q\n\x1a\x42\x61tchExtractFileComponents\x12\".BatchExtractFileComponentsRequest\x1a\x0f.FileComponents\x12=\n\x12SaveFileComponents\x12\x0f.FileComponents\x1a\x16.SavedFileComponentIds\x12\x46\n\x16GetSavedFileComponents\x12\x16.SavedFileComponentIds\x1a\x14.SavedFileComponentsb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66ile_components_service.proto\"v\n\rFileComponent\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x11\n\tfile_path\x18\x03 \x01(\t\x12\x12\n\nstart_line\x18\x04 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x05 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x06 \x01(\t\"9\n\x0e\x46ileComponents\x12\'\n\x0f\x66ile_components\x18\x01 \x03(\x0b\x32\x0e.FileComponent\".\n\x10\x46ileComponentIds\x12\x1a\n\x12\x66ile_component_ids\x18\x01 \x03(\x05\"4\n\rUserFilePaths\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t2\x89\x01\n\x15\x46ileComponentsService\x12\x37\n\x14\x43reateFileComponents\x12\x0e.UserFilePaths\x1a\x0f.FileComponents\x12\x37\n\x11GetFileComponents\x12\x11.FileComponentIds\x1a\x0f.FileComponentsb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,17 +22,13 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'file_components_service_pb2
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_FILECOMPONENT']._serialized_start=33
-  _globals['_FILECOMPONENT']._serialized_end=122
-  _globals['_SAVEDFILECOMPONENT']._serialized_start=124
-  _globals['_SAVEDFILECOMPONENT']._serialized_end=230
-  _globals['_SAVEDFILECOMPONENTS']._serialized_start=232
-  _globals['_SAVEDFILECOMPONENTS']._serialized_end=305
-  _globals['_FILECOMPONENTS']._serialized_start=307
-  _globals['_FILECOMPONENTS']._serialized_end=364
-  _globals['_BATCHEXTRACTFILECOMPONENTSREQUEST']._serialized_start=366
-  _globals['_BATCHEXTRACTFILECOMPONENTSREQUEST']._serialized_end=438
-  _globals['_SAVEDFILECOMPONENTIDS']._serialized_start=440
-  _globals['_SAVEDFILECOMPONENTIDS']._serialized_end=497
-  _globals['_FILECOMPONENTSSERVICE']._serialized_start=500
-  _globals['_FILECOMPONENTSSERVICE']._serialized_end=741
+  _globals['_FILECOMPONENT']._serialized_end=151
+  _globals['_FILECOMPONENTS']._serialized_start=153
+  _globals['_FILECOMPONENTS']._serialized_end=210
+  _globals['_FILECOMPONENTIDS']._serialized_start=212
+  _globals['_FILECOMPONENTIDS']._serialized_end=258
+  _globals['_USERFILEPATHS']._serialized_start=260
+  _globals['_USERFILEPATHS']._serialized_end=312
+  _globals['_FILECOMPONENTSSERVICE']._serialized_start=315
+  _globals['_FILECOMPONENTSSERVICE']._serialized_end=452
 # @@protoc_insertion_point(module_scope)

@@ -39,13 +39,14 @@ class PostgreSql(BaseDatabase):
                 "file_path": file_path,
                 "start_line": start_line,
                 "end_line": end_line,
+                "content": content,
             }
-            for id, user_id, file_path, start_line, end_line in self._cursor.fetchall()
+            for id, user_id, file_path, start_line, end_line, content in self._cursor.fetchall()
         ]
 
         return file_components
 
-    def save_file_components(self, file_components: list[dict]) -> list[int]:
+    def save_file_components(self, file_components: list[dict]) -> list[dict]:
         self._ensure_file_components_table_exists()
 
         file_component_tuples = [
@@ -54,24 +55,37 @@ class PostgreSql(BaseDatabase):
                 file_component["file_path"],
                 file_component["start_line"],
                 file_component["end_line"],
+                file_component["content"],
             )
             for file_component in file_components
         ]
 
         args = ",".join(
-            self._cursor.mogrify("(%s,%s,%s, %s)", file_component_tuple).decode("utf-8")
+            self._cursor.mogrify("(%s,%s,%s,%s,%s)", file_component_tuple).decode(
+                "utf-8"
+            )
             for file_component_tuple in file_component_tuples
         )
 
-        query = f"INSERT INTO file_components(user_id, file_path, start_line, end_line)  VALUES {args} RETURNING id;"
+        query = f"INSERT INTO file_components(user_id, file_path, start_line, end_line, content)  VALUES {args} RETURNING id, user_id, file_path, start_line, end_line, content;"
 
         self._cursor.execute(query)
 
-        inserted_ids = [row[0] for row in self._cursor.fetchall()]
-        
+        inserted_file_components = [
+            {
+                "id": id,
+                "user_id": user_id,
+                "file_path": file_path,
+                "start_line": start_line,
+                "end_line": end_line,
+                "content": content,
+            }
+            for id, user_id, file_path, start_line, end_line, content in self._cursor.fetchall()
+        ]
+
         self._connection.commit()
-        
-        return inserted_ids
+
+        return inserted_file_components
 
     def _ensure_file_components_table_exists(self) -> None:
         create_file_components_table_query = """
@@ -80,7 +94,8 @@ class PostgreSql(BaseDatabase):
                 user_id VARCHAR(255),
                 file_path VARCHAR(255),
                 start_line INT,
-                end_line INT
+                end_line INT,
+                content text
             );
         """
         self._cursor.execute(create_file_components_table_query)
