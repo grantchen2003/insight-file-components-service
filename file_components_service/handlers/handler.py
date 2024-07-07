@@ -17,7 +17,7 @@ class FileComponentServicer(
         def extract_file_components(file_path: str):
             sorted_file_chunks_content = (
                 file_chunks_service.get_sorted_file_chunks_content(
-                    request.user_id, file_path
+                    request.repository_id, file_path
                 )
             )
 
@@ -32,7 +32,7 @@ class FileComponentServicer(
 
             return [
                 {
-                    "user_id": request.user_id,
+                    "repository_id": request.repository_id,
                     "file_path": file_path,
                     "start_line": start_line,
                     "end_line": end_line,

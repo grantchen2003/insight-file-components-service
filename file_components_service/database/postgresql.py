@@ -35,13 +35,13 @@ class PostgreSql(BaseDatabase):
         file_components = [
             {
                 "id": id,
-                "user_id": user_id,
+                "repository_id": repository_id,
                 "file_path": file_path,
                 "start_line": start_line,
                 "end_line": end_line,
                 "content": content,
             }
-            for id, user_id, file_path, start_line, end_line, content in self._cursor.fetchall()
+            for id, repository_id, file_path, start_line, end_line, content in self._cursor.fetchall()
         ]
 
         return file_components
@@ -51,7 +51,7 @@ class PostgreSql(BaseDatabase):
 
         file_component_tuples = [
             (
-                file_component["user_id"],
+                file_component["repository_id"],
                 file_component["file_path"],
                 file_component["start_line"],
                 file_component["end_line"],
@@ -67,20 +67,20 @@ class PostgreSql(BaseDatabase):
             for file_component_tuple in file_component_tuples
         )
 
-        query = f"INSERT INTO file_components(user_id, file_path, start_line, end_line, content)  VALUES {args} RETURNING id, user_id, file_path, start_line, end_line, content;"
+        query = f"INSERT INTO file_components(repository_id, file_path, start_line, end_line, content)  VALUES {args} RETURNING id, repository_id, file_path, start_line, end_line, content;"
 
         self._cursor.execute(query)
 
         inserted_file_components = [
             {
                 "id": id,
-                "user_id": user_id,
+                "repository_id": repository_id,
                 "file_path": file_path,
                 "start_line": start_line,
                 "end_line": end_line,
                 "content": content,
             }
-            for id, user_id, file_path, start_line, end_line, content in self._cursor.fetchall()
+            for id, repository_id, file_path, start_line, end_line, content in self._cursor.fetchall()
         ]
 
         self._connection.commit()
@@ -91,7 +91,7 @@ class PostgreSql(BaseDatabase):
         create_file_components_table_query = """
             CREATE TABLE IF NOT EXISTS file_components (
                 id SERIAL PRIMARY KEY,
-                user_id VARCHAR(255),
+                repository_id VARCHAR(255),
                 file_path VARCHAR(255),
                 start_line INT,
                 end_line INT,

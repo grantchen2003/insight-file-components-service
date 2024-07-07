@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19\x66ile_chunks_service.proto\"v\n\x10\x46ileChunkPayload\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x11\n\tfile_path\x18\x02 \x01(\t\x12\x13\n\x0b\x63hunk_index\x18\x03 \x01(\x05\x12\x18\n\x10num_total_chunks\x18\x04 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x05 \x01(\x0c\"G\n\x15SaveFileChunksRequest\x12.\n\x13\x66ile_chunk_payloads\x18\x01 \x03(\x0b\x32\x11.FileChunkPayload\"E\n\x13\x46ileChunkSaveStatus\x12\x11\n\tfile_path\x18\x01 \x01(\t\x12\x1b\n\x13is_last_saved_chunk\x18\x02 \x01(\x08\"K\n\x16SaveFileChunksResponse\x12\x31\n\x13\x66ile_chunk_statuses\x18\x01 \x03(\x0b\x32\x14.FileChunkSaveStatus\"G\n!GetSortedFileChunksContentRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x11\n\tfile_path\x18\x02 \x01(\t\"#\n\x10\x46ileChunkContent\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\x0c\"T\n\"GetSortedFileChunksContentResponse\x12.\n\x13\x66ile_chunks_content\x18\x01 \x03(\x0b\x32\x11.FileChunkContent2\xbd\x01\n\x11\x46ileChunksService\x12\x41\n\x0eSaveFileChunks\x12\x16.SaveFileChunksRequest\x1a\x17.SaveFileChunksResponse\x12\x65\n\x1aGetSortedFileChunksContent\x12\".GetSortedFileChunksContentRequest\x1a#.GetSortedFileChunksContentResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19\x66ile_chunks_service.proto\"|\n\x10\x46ileChunkPayload\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x11\n\tfile_path\x18\x02 \x01(\t\x12\x13\n\x0b\x63hunk_index\x18\x03 \x01(\x05\x12\x18\n\x10num_total_chunks\x18\x04 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x05 \x01(\x0c\"G\n\x15SaveFileChunksRequest\x12.\n\x13\x66ile_chunk_payloads\x18\x01 \x03(\x0b\x32\x11.FileChunkPayload\"E\n\x13\x46ileChunkSaveStatus\x12\x11\n\tfile_path\x18\x01 \x01(\t\x12\x1b\n\x13is_last_saved_chunk\x18\x02 \x01(\x08\"K\n\x16SaveFileChunksResponse\x12\x31\n\x13\x66ile_chunk_statuses\x18\x01 \x03(\x0b\x32\x14.FileChunkSaveStatus\"M\n!GetSortedFileChunksContentRequest\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x11\n\tfile_path\x18\x02 \x01(\t\"#\n\x10\x46ileChunkContent\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\x0c\"T\n\"GetSortedFileChunksContentResponse\x12.\n\x13\x66ile_chunks_content\x18\x01 \x03(\x0b\x32\x11.FileChunkContent2\xbd\x01\n\x11\x46ileChunksService\x12\x41\n\x0eSaveFileChunks\x12\x16.SaveFileChunksRequest\x1a\x17.SaveFileChunksResponse\x12\x65\n\x1aGetSortedFileChunksContent\x12\".GetSortedFileChunksContentRequest\x1a#.GetSortedFileChunksContentResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,19 +22,19 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'file_chunks_service_pb2', _
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_FILECHUNKPAYLOAD']._serialized_start=29
-  _globals['_FILECHUNKPAYLOAD']._serialized_end=147
-  _globals['_SAVEFILECHUNKSREQUEST']._serialized_start=149
-  _globals['_SAVEFILECHUNKSREQUEST']._serialized_end=220
-  _globals['_FILECHUNKSAVESTATUS']._serialized_start=222
-  _globals['_FILECHUNKSAVESTATUS']._serialized_end=291
-  _globals['_SAVEFILECHUNKSRESPONSE']._serialized_start=293
-  _globals['_SAVEFILECHUNKSRESPONSE']._serialized_end=368
-  _globals['_GETSORTEDFILECHUNKSCONTENTREQUEST']._serialized_start=370
-  _globals['_GETSORTEDFILECHUNKSCONTENTREQUEST']._serialized_end=441
-  _globals['_FILECHUNKCONTENT']._serialized_start=443
-  _globals['_FILECHUNKCONTENT']._serialized_end=478
-  _globals['_GETSORTEDFILECHUNKSCONTENTRESPONSE']._serialized_start=480
-  _globals['_GETSORTEDFILECHUNKSCONTENTRESPONSE']._serialized_end=564
-  _globals['_FILECHUNKSSERVICE']._serialized_start=567
-  _globals['_FILECHUNKSSERVICE']._serialized_end=756
+  _globals['_FILECHUNKPAYLOAD']._serialized_end=153
+  _globals['_SAVEFILECHUNKSREQUEST']._serialized_start=155
+  _globals['_SAVEFILECHUNKSREQUEST']._serialized_end=226
+  _globals['_FILECHUNKSAVESTATUS']._serialized_start=228
+  _globals['_FILECHUNKSAVESTATUS']._serialized_end=297
+  _globals['_SAVEFILECHUNKSRESPONSE']._serialized_start=299
+  _globals['_SAVEFILECHUNKSRESPONSE']._serialized_end=374
+  _globals['_GETSORTEDFILECHUNKSCONTENTREQUEST']._serialized_start=376
+  _globals['_GETSORTEDFILECHUNKSCONTENTREQUEST']._serialized_end=453
+  _globals['_FILECHUNKCONTENT']._serialized_start=455
+  _globals['_FILECHUNKCONTENT']._serialized_end=490
+  _globals['_GETSORTEDFILECHUNKSCONTENTRESPONSE']._serialized_start=492
+  _globals['_GETSORTEDFILECHUNKSCONTENTRESPONSE']._serialized_end=576
+  _globals['_FILECHUNKSSERVICE']._serialized_start=579
+  _globals['_FILECHUNKSSERVICE']._serialized_end=768
 # @@protoc_insertion_point(module_scope)
