@@ -17,3 +17,7 @@ class BaseDatabase(ABC):
     @abstractmethod
     def get_file_components(self, file_component_ids: list[int]) -> list[dict]:
         pass
+
+    @abstractmethod
+    def delete_file_components_by_repository_id(self, repository_id: str) -> None:
+        pass

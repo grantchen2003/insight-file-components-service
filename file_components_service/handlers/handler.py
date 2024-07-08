@@ -1,4 +1,5 @@
-import concurrent.futures
+import concurrent.futures, google
+from google.protobuf import empty_pb2
 
 from file_components_service import database, utils
 from file_components_service.protobufs import (
@@ -69,3 +70,12 @@ class FileComponentServicer(
         return file_components_service_pb2.FileComponents(
             file_components=file_components
         )
+        
+    def DeleteFileComponentsByRepositoryId(self, request, _):
+        print("received DeleteFileComponentsByRepositoryId request")
+            
+        db = database.get_singleton_instance()
+        
+        db.delete_file_components_by_repository_id(request.repository_id)
+        
+        return empty_pb2.Empty()
