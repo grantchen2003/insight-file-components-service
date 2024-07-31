@@ -55,6 +55,11 @@ class FileComponentsServiceStub(object):
                 request_serializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.DeleteFileComponentsByRepositoryIdAndFilePaths = channel.unary_unary(
+                '/FileComponentsService/DeleteFileComponentsByRepositoryIdAndFilePaths',
+                request_serializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsRequest.SerializeToString,
+                response_deserializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsResponse.FromString,
+                _registered_method=True)
 
 
 class FileComponentsServiceServicer(object):
@@ -78,6 +83,12 @@ class FileComponentsServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteFileComponentsByRepositoryIdAndFilePaths(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FileComponentsServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -95,6 +106,11 @@ def add_FileComponentsServiceServicer_to_server(servicer, server):
                     servicer.DeleteFileComponentsByRepositoryId,
                     request_deserializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'DeleteFileComponentsByRepositoryIdAndFilePaths': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteFileComponentsByRepositoryIdAndFilePaths,
+                    request_deserializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsRequest.FromString,
+                    response_serializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -178,6 +194,33 @@ class FileComponentsService(object):
             '/FileComponentsService/DeleteFileComponentsByRepositoryId',
             file__components__service__pb2.DeleteFileComponentsByRepositoryIdRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteFileComponentsByRepositoryIdAndFilePaths(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/FileComponentsService/DeleteFileComponentsByRepositoryIdAndFilePaths',
+            file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsRequest.SerializeToString,
+            file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsResponse.FromString,
             options,
             channel_credentials,
             insecure,

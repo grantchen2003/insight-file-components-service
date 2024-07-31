@@ -70,12 +70,23 @@ class FileComponentServicer(
         return file_components_service_pb2.FileComponents(
             file_components=file_components
         )
-        
+
     def DeleteFileComponentsByRepositoryId(self, request, _):
         print("received DeleteFileComponentsByRepositoryId request")
-            
+
         db = database.get_singleton_instance()
-        
+
         db.delete_file_components_by_repository_id(request.repository_id)
-        
+
+        return empty_pb2.Empty()
+
+    def DeleteFileComponentsByRepositoryIdAndFilePaths(self, request, _):
+        print("received DeleteFileComponentsByRepositoryIdAndFilePaths request")
+
+        db = database.get_singleton_instance()
+
+        db.delete_file_components_by_repository_id_and_file_paths(
+            request.repository_id, request.file_paths
+        )
+
         return empty_pb2.Empty()
