@@ -85,8 +85,10 @@ class FileComponentServicer(
 
         db = database.get_singleton_instance()
 
-        db.delete_file_components_by_repository_id_and_file_paths(
+        file_component_ids = db.delete_file_components_by_repository_id_and_file_paths(
             request.repository_id, request.file_paths
         )
 
-        return empty_pb2.Empty()
+        return file_components_service_pb2.FileComponentIds(
+            file_component_ids=file_component_ids
+        )

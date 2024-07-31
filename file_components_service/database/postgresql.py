@@ -96,14 +96,15 @@ class PostgreSql(BaseDatabase):
 
     def delete_file_components_by_repository_id_and_file_paths(
         self, repository_id: str, file_paths: list[str]
-    ) -> None:
-        query = (
-            "DELETE FROM file_components WHERE repository_id = %s AND file_path IN %s"
-        )
-
+    ) -> list[int]:
+        query = "DELETE FROM file_components WHERE repository_id = %s AND file_path IN %s RETURNING id"
+        
         self._cursor.execute(query, (repository_id, tuple(file_paths)))
-
+        
+        deleted_ids = [row[0] for row in self._cursor.fetchall()]
         self._connection.commit()
+        
+        return deleted_ids
 
     def _ensure_file_components_table_exists(self) -> None:
         create_file_components_table_query = """

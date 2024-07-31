@@ -33,13 +33,9 @@ message DeleteFileComponentsByRepositoryIdAndFilePathsRequest {
     repeated string file_paths = 2;
 }
 
-message DeleteFileComponentsByRepositoryIdAndFilePathsResponse {
-    repeated int32 file_component_ids = 1;
-}
-
 service FileComponentsService {
     rpc CreateFileComponents(RepositoryFilePaths) returns(FileComponents);
     rpc GetFileComponents(FileComponentIds) returns (FileComponents);
     rpc DeleteFileComponentsByRepositoryId(DeleteFileComponentsByRepositoryIdRequest) returns (google.protobuf.Empty);
-    rpc DeleteFileComponentsByRepositoryIdAndFilePaths(DeleteFileComponentsByRepositoryIdAndFilePathsRequest) returns (DeleteFileComponentsByRepositoryIdAndFilePathsResponse);
+    rpc DeleteFileComponentsByRepositoryIdAndFilePaths(DeleteFileComponentsByRepositoryIdAndFilePathsRequest) returns (FileComponentIds);
 }

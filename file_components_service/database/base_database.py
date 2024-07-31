@@ -23,5 +23,5 @@ class BaseDatabase(ABC):
         pass
     
     @abstractmethod
-    def delete_file_components_by_repository_id_and_file_paths(self, repository_id: str, file_paths: list[str]) -> None:
+    def delete_file_components_by_repository_id_and_file_paths(self, repository_id: str, file_paths: list[str]) -> list[int]:
         pass

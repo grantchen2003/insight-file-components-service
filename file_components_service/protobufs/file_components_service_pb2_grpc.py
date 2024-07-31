@@ -58,7 +58,7 @@ class FileComponentsServiceStub(object):
         self.DeleteFileComponentsByRepositoryIdAndFilePaths = channel.unary_unary(
                 '/FileComponentsService/DeleteFileComponentsByRepositoryIdAndFilePaths',
                 request_serializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsRequest.SerializeToString,
-                response_deserializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsResponse.FromString,
+                response_deserializer=file__components__service__pb2.FileComponentIds.FromString,
                 _registered_method=True)
 
 
@@ -110,7 +110,7 @@ def add_FileComponentsServiceServicer_to_server(servicer, server):
             'DeleteFileComponentsByRepositoryIdAndFilePaths': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteFileComponentsByRepositoryIdAndFilePaths,
                     request_deserializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsRequest.FromString,
-                    response_serializer=file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsResponse.SerializeToString,
+                    response_serializer=file__components__service__pb2.FileComponentIds.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -220,7 +220,7 @@ class FileComponentsService(object):
             target,
             '/FileComponentsService/DeleteFileComponentsByRepositoryIdAndFilePaths',
             file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsRequest.SerializeToString,
-            file__components__service__pb2.DeleteFileComponentsByRepositoryIdAndFilePathsResponse.FromString,
+            file__components__service__pb2.FileComponentIds.FromString,
             options,
             channel_credentials,
             insecure,

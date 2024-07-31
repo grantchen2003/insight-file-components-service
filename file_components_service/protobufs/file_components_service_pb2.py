@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66ile_components_service.proto\x1a\x1bgoogle/protobuf/empty.proto\"|\n\rFileComponent\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x15\n\rrepository_id\x18\x02 \x01(\t\x12\x11\n\tfile_path\x18\x03 \x01(\t\x12\x12\n\nstart_line\x18\x04 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x05 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x06 \x01(\t\"9\n\x0e\x46ileComponents\x12\'\n\x0f\x66ile_components\x18\x01 \x03(\x0b\x32\x0e.FileComponent\".\n\x10\x46ileComponentIds\x12\x1a\n\x12\x66ile_component_ids\x18\x01 \x03(\x05\"@\n\x13RepositoryFilePaths\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t\"B\n)DeleteFileComponentsByRepositoryIdRequest\x12\x15\n\rrepository_id\x18\x01 \x01(\t\"b\n5DeleteFileComponentsByRepositoryIdAndFilePathsRequest\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t\"T\n6DeleteFileComponentsByRepositoryIdAndFilePathsResponse\x12\x1a\n\x12\x66ile_component_ids\x18\x01 \x03(\x05\x32\x9d\x03\n\x15\x46ileComponentsService\x12=\n\x14\x43reateFileComponents\x12\x14.RepositoryFilePaths\x1a\x0f.FileComponents\x12\x37\n\x11GetFileComponents\x12\x11.FileComponentIds\x1a\x0f.FileComponents\x12h\n\"DeleteFileComponentsByRepositoryId\x12*.DeleteFileComponentsByRepositoryIdRequest\x1a\x16.google.protobuf.Empty\x12\xa1\x01\n.DeleteFileComponentsByRepositoryIdAndFilePaths\x12\x36.DeleteFileComponentsByRepositoryIdAndFilePathsRequest\x1a\x37.DeleteFileComponentsByRepositoryIdAndFilePathsResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66ile_components_service.proto\x1a\x1bgoogle/protobuf/empty.proto\"|\n\rFileComponent\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x15\n\rrepository_id\x18\x02 \x01(\t\x12\x11\n\tfile_path\x18\x03 \x01(\t\x12\x12\n\nstart_line\x18\x04 \x01(\x05\x12\x10\n\x08\x65nd_line\x18\x05 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x06 \x01(\t\"9\n\x0e\x46ileComponents\x12\'\n\x0f\x66ile_components\x18\x01 \x03(\x0b\x32\x0e.FileComponent\".\n\x10\x46ileComponentIds\x12\x1a\n\x12\x66ile_component_ids\x18\x01 \x03(\x05\"@\n\x13RepositoryFilePaths\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t\"B\n)DeleteFileComponentsByRepositoryIdRequest\x12\x15\n\rrepository_id\x18\x01 \x01(\t\"b\n5DeleteFileComponentsByRepositoryIdAndFilePathsRequest\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x12\n\nfile_paths\x18\x02 \x03(\t2\xf6\x02\n\x15\x46ileComponentsService\x12=\n\x14\x43reateFileComponents\x12\x14.RepositoryFilePaths\x1a\x0f.FileComponents\x12\x37\n\x11GetFileComponents\x12\x11.FileComponentIds\x1a\x0f.FileComponents\x12h\n\"DeleteFileComponentsByRepositoryId\x12*.DeleteFileComponentsByRepositoryIdRequest\x1a\x16.google.protobuf.Empty\x12{\n.DeleteFileComponentsByRepositoryIdAndFilePaths\x12\x36.DeleteFileComponentsByRepositoryIdAndFilePathsRequest\x1a\x11.FileComponentIdsb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,8 +34,6 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_DELETEFILECOMPONENTSBYREPOSITORYIDREQUEST']._serialized_end=427
   _globals['_DELETEFILECOMPONENTSBYREPOSITORYIDANDFILEPATHSREQUEST']._serialized_start=429
   _globals['_DELETEFILECOMPONENTSBYREPOSITORYIDANDFILEPATHSREQUEST']._serialized_end=527
-  _globals['_DELETEFILECOMPONENTSBYREPOSITORYIDANDFILEPATHSRESPONSE']._serialized_start=529
-  _globals['_DELETEFILECOMPONENTSBYREPOSITORYIDANDFILEPATHSRESPONSE']._serialized_end=613
-  _globals['_FILECOMPONENTSSERVICE']._serialized_start=616
-  _globals['_FILECOMPONENTSSERVICE']._serialized_end=1029
+  _globals['_FILECOMPONENTSSERVICE']._serialized_start=530
+  _globals['_FILECOMPONENTSSERVICE']._serialized_end=904
 # @@protoc_insertion_point(module_scope)
