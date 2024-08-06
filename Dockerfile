@@ -6,4 +6,4 @@ COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "-m", "file_components_service.main"]
+CMD ["python", "-u", "-m", "file_components_service.main"]
