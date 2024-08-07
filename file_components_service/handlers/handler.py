@@ -75,14 +75,8 @@ class FileComponentServicer(
 
         file_components = db.save_file_components(file_components)
 
-        pb_file_components = [
-            file_components_service_pb2.FileComponent(**file_component)
-            for file_component in file_components
-        ]
-
-        return file_components_service_pb2.FileComponents(
-            file_components=pb_file_components
-        )
+        for file_component in file_components:
+            yield file_components_service_pb2.FileComponent(**file_component)
 
     @log_error
     def GetFileComponents(self, request, _):
@@ -92,9 +86,8 @@ class FileComponentServicer(
 
         file_components = db.get_file_components(request.file_component_ids)
 
-        return file_components_service_pb2.FileComponents(
-            file_components=file_components
-        )
+        for file_component in file_components:
+            yield file_components_service_pb2.FileComponent(**file_component)
 
     @log_error
     def DeleteFileComponentsByRepositoryId(self, request, _):
