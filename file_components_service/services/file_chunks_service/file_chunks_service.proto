@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+
+import "google/protobuf/empty.proto";
+
+
 message FileChunkPayload {
     string repository_id = 1;
     string file_path = 2;
@@ -9,7 +13,7 @@ message FileChunkPayload {
 }
 
 
-message SaveFileChunksRequest {
+message CreateFileChunksRequest {
     repeated FileChunkPayload file_chunk_payloads = 1;
 }
 
@@ -20,7 +24,7 @@ message FileChunkSaveStatus {
 }
 
 
-message SaveFileChunksResponse {
+message CreateFileChunksResponse {
     repeated FileChunkSaveStatus file_chunk_statuses = 1;
 }
 
@@ -30,16 +34,31 @@ message GetSortedFileChunksContentRequest {
     string file_path = 2;
 }
 
+
 message FileChunkContent {
     bytes content = 1;
 }
+
 
 message GetSortedFileChunksContentResponse {
     repeated FileChunkContent file_chunks_content = 1;
 }
 
 
+message DeleteFileChunksByRepositoryIdRequest {
+    string repository_id = 1;
+}
+
+
+message DeleteFileChunksByRepositoryIdAndFilePathsRequest {
+    string repository_id = 1;
+    repeated string file_paths = 2;
+}
+
+
 service FileChunksService {
-    rpc SaveFileChunks(SaveFileChunksRequest) returns (SaveFileChunksResponse);
-    rpc GetSortedFileChunksContent(GetSortedFileChunksContentRequest) returns (GetSortedFileChunksContentResponse);
+    rpc CreateFileChunks(CreateFileChunksRequest) returns (CreateFileChunksResponse);
+    rpc GetSortedFileChunksContent(GetSortedFileChunksContentRequest) returns (stream FileChunkContent);
+    rpc DeleteFileChunksByRepositoryId(DeleteFileChunksByRepositoryIdRequest) returns (google.protobuf.Empty);
+    rpc DeleteFileChunksByRepositoryIdAndFilePaths(DeleteFileChunksByRepositoryIdAndFilePathsRequest) returns (google.protobuf.Empty);
 }

@@ -4,6 +4,7 @@ import grpc
 import warnings
 
 from . import file_chunks_service_pb2 as file__chunks__service__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
 GRPC_VERSION = grpc.__version__
@@ -39,22 +40,32 @@ class FileChunksServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SaveFileChunks = channel.unary_unary(
-                '/FileChunksService/SaveFileChunks',
-                request_serializer=file__chunks__service__pb2.SaveFileChunksRequest.SerializeToString,
-                response_deserializer=file__chunks__service__pb2.SaveFileChunksResponse.FromString,
+        self.CreateFileChunks = channel.unary_unary(
+                '/FileChunksService/CreateFileChunks',
+                request_serializer=file__chunks__service__pb2.CreateFileChunksRequest.SerializeToString,
+                response_deserializer=file__chunks__service__pb2.CreateFileChunksResponse.FromString,
                 _registered_method=True)
-        self.GetSortedFileChunksContent = channel.unary_unary(
+        self.GetSortedFileChunksContent = channel.unary_stream(
                 '/FileChunksService/GetSortedFileChunksContent',
                 request_serializer=file__chunks__service__pb2.GetSortedFileChunksContentRequest.SerializeToString,
-                response_deserializer=file__chunks__service__pb2.GetSortedFileChunksContentResponse.FromString,
+                response_deserializer=file__chunks__service__pb2.FileChunkContent.FromString,
+                _registered_method=True)
+        self.DeleteFileChunksByRepositoryId = channel.unary_unary(
+                '/FileChunksService/DeleteFileChunksByRepositoryId',
+                request_serializer=file__chunks__service__pb2.DeleteFileChunksByRepositoryIdRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.DeleteFileChunksByRepositoryIdAndFilePaths = channel.unary_unary(
+                '/FileChunksService/DeleteFileChunksByRepositoryIdAndFilePaths',
+                request_serializer=file__chunks__service__pb2.DeleteFileChunksByRepositoryIdAndFilePathsRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
 
 
 class FileChunksServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SaveFileChunks(self, request, context):
+    def CreateFileChunks(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -66,18 +77,40 @@ class FileChunksServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteFileChunksByRepositoryId(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteFileChunksByRepositoryIdAndFilePaths(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FileChunksServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SaveFileChunks': grpc.unary_unary_rpc_method_handler(
-                    servicer.SaveFileChunks,
-                    request_deserializer=file__chunks__service__pb2.SaveFileChunksRequest.FromString,
-                    response_serializer=file__chunks__service__pb2.SaveFileChunksResponse.SerializeToString,
+            'CreateFileChunks': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateFileChunks,
+                    request_deserializer=file__chunks__service__pb2.CreateFileChunksRequest.FromString,
+                    response_serializer=file__chunks__service__pb2.CreateFileChunksResponse.SerializeToString,
             ),
-            'GetSortedFileChunksContent': grpc.unary_unary_rpc_method_handler(
+            'GetSortedFileChunksContent': grpc.unary_stream_rpc_method_handler(
                     servicer.GetSortedFileChunksContent,
                     request_deserializer=file__chunks__service__pb2.GetSortedFileChunksContentRequest.FromString,
-                    response_serializer=file__chunks__service__pb2.GetSortedFileChunksContentResponse.SerializeToString,
+                    response_serializer=file__chunks__service__pb2.FileChunkContent.SerializeToString,
+            ),
+            'DeleteFileChunksByRepositoryId': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteFileChunksByRepositoryId,
+                    request_deserializer=file__chunks__service__pb2.DeleteFileChunksByRepositoryIdRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'DeleteFileChunksByRepositoryIdAndFilePaths': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteFileChunksByRepositoryIdAndFilePaths,
+                    request_deserializer=file__chunks__service__pb2.DeleteFileChunksByRepositoryIdAndFilePathsRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -91,7 +124,7 @@ class FileChunksService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SaveFileChunks(request,
+    def CreateFileChunks(request,
             target,
             options=(),
             channel_credentials=None,
@@ -104,9 +137,9 @@ class FileChunksService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/FileChunksService/SaveFileChunks',
-            file__chunks__service__pb2.SaveFileChunksRequest.SerializeToString,
-            file__chunks__service__pb2.SaveFileChunksResponse.FromString,
+            '/FileChunksService/CreateFileChunks',
+            file__chunks__service__pb2.CreateFileChunksRequest.SerializeToString,
+            file__chunks__service__pb2.CreateFileChunksResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -128,12 +161,66 @@ class FileChunksService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(
+        return grpc.experimental.unary_stream(
             request,
             target,
             '/FileChunksService/GetSortedFileChunksContent',
             file__chunks__service__pb2.GetSortedFileChunksContentRequest.SerializeToString,
-            file__chunks__service__pb2.GetSortedFileChunksContentResponse.FromString,
+            file__chunks__service__pb2.FileChunkContent.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteFileChunksByRepositoryId(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/FileChunksService/DeleteFileChunksByRepositoryId',
+            file__chunks__service__pb2.DeleteFileChunksByRepositoryIdRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteFileChunksByRepositoryIdAndFilePaths(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/FileChunksService/DeleteFileChunksByRepositoryIdAndFilePaths',
+            file__chunks__service__pb2.DeleteFileChunksByRepositoryIdAndFilePathsRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

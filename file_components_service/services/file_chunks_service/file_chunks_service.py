@@ -13,9 +13,8 @@ def get_sorted_file_chunks_content(repository_id: str, file_path: str) -> list[b
             repository_id=repository_id, file_path=file_path
         )
 
-        response = stub.GetSortedFileChunksContent(request)
-
-        return [
-            file_chunk_content.content
-            for file_chunk_content in response.file_chunks_content
+        file_chunks = [
+            chunk.content for chunk in stub.GetSortedFileChunksContent(request)
         ]
+
+        return file_chunks

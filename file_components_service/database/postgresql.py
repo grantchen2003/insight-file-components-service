@@ -24,6 +24,9 @@ class PostgreSql(BaseDatabase):
         self._connection.close()
 
     def get_file_components(self, file_component_ids: list[int]) -> list[dict]:
+        if not file_component_ids:
+            return []
+        
         file_component_ids_str = ",".join(str(id) for id in file_component_ids)
 
         select_query = (
@@ -47,6 +50,9 @@ class PostgreSql(BaseDatabase):
         return file_components
 
     def save_file_components(self, file_components: list[dict]) -> list[dict]:
+        if not file_components:
+            return []
+        
         self._ensure_file_components_table_exists()
 
         file_component_tuples = [
