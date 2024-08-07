@@ -1,4 +1,5 @@
-import concurrent.futures, google
+import concurrent.futures, functools, logging
+
 from google.protobuf import empty_pb2
 
 from file_components_service import database, utils
@@ -9,9 +10,29 @@ from file_components_service.protobufs import (
 from file_components_service.services import file_chunks_service
 
 
+# Configure the logger
+logging.basicConfig(
+    level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+
+def log_error(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            logger.error(f"An error occurred in {func.__name__}: {e}", exc_info=True)
+            raise
+
+    return wrapper
+
+
 class FileComponentServicer(
     file_components_service_pb2_grpc.FileComponentsServiceServicer
 ):
+    @log_error
     def CreateFileComponents(self, request, _):
         print("received CreateFileComponents request")
 
@@ -60,6 +81,7 @@ class FileComponentServicer(
             file_components=pb_file_components
         )
 
+    @log_error
     def GetFileComponents(self, request, _):
         print("received GetFileComponents request")
 
@@ -71,6 +93,7 @@ class FileComponentServicer(
             file_components=file_components
         )
 
+    @log_error
     def DeleteFileComponentsByRepositoryId(self, request, _):
         print("received DeleteFileComponentsByRepositoryId request")
 
@@ -80,6 +103,7 @@ class FileComponentServicer(
 
         return empty_pb2.Empty()
 
+    @log_error
     def DeleteFileComponentsByRepositoryIdAndFilePaths(self, request, _):
         print("received DeleteFileComponentsByRepositoryIdAndFilePaths request")
 
