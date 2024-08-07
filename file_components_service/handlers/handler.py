@@ -12,8 +12,11 @@ from file_components_service.services import file_chunks_service
 
 # Configure the logger
 logging.basicConfig(
-    level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.DEBUG,
+    format="%(asctime)s %(message)s",
+    datefmt="%Y/%m/%d %H:%M:%S",
 )
+
 logger = logging.getLogger(__name__)
 
 
@@ -34,7 +37,7 @@ class FileComponentServicer(
 ):
     @log_error
     def CreateFileComponents(self, request, _):
-        print("received CreateFileComponents request")
+        logger.info("received CreateFileComponents request")
 
         def extract_file_components(file_path: str):
             sorted_file_chunks_content = (
@@ -83,7 +86,7 @@ class FileComponentServicer(
 
     @log_error
     def GetFileComponents(self, request, _):
-        print("received GetFileComponents request")
+        logger.info("received GetFileComponents request")
 
         db = database.get_singleton_instance()
 
@@ -95,7 +98,7 @@ class FileComponentServicer(
 
     @log_error
     def DeleteFileComponentsByRepositoryId(self, request, _):
-        print("received DeleteFileComponentsByRepositoryId request")
+        logger.info("received DeleteFileComponentsByRepositoryId request")
 
         db = database.get_singleton_instance()
 
@@ -105,7 +108,7 @@ class FileComponentServicer(
 
     @log_error
     def DeleteFileComponentsByRepositoryIdAndFilePaths(self, request, _):
-        print("received DeleteFileComponentsByRepositoryIdAndFilePaths request")
+        logger.info("received DeleteFileComponentsByRepositoryIdAndFilePaths request")
 
         db = database.get_singleton_instance()
 
