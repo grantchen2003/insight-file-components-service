@@ -8,6 +8,10 @@ class PostgreSql(BaseDatabase):
         self._connection = None
         self._cursor = None
 
+    def _ensure_connection(self):
+        if self._connection is None or self._connection.closed != 0:
+            self.connect()
+
     def connect(self) -> None:
         self._connection = psycopg2.connect(
             dbname=os.environ["POSTGRESQL_DATABASE_NAME"],
@@ -26,7 +30,9 @@ class PostgreSql(BaseDatabase):
     def get_file_components(self, file_component_ids: list[int]) -> list[dict]:
         if not file_component_ids:
             return []
-        
+
+        self._ensure_connection()
+
         file_component_ids_str = ",".join(str(id) for id in file_component_ids)
 
         select_query = (
@@ -52,6 +58,8 @@ class PostgreSql(BaseDatabase):
     def save_file_components(self, file_components: list[dict]) -> list[dict]:
         if not file_components:
             return []
+
+        self._ensure_connection()
         
         self._ensure_file_components_table_exists()
 
@@ -94,6 +102,8 @@ class PostgreSql(BaseDatabase):
         return inserted_file_components
 
     def delete_file_components_by_repository_id(self, repository_id: str) -> None:
+        self._ensure_connection()
+
         query = "DELETE FROM file_components WHERE repository_id = %s"
 
         self._cursor.execute(query, (repository_id,))
@@ -103,16 +113,20 @@ class PostgreSql(BaseDatabase):
     def delete_file_components_by_repository_id_and_file_paths(
         self, repository_id: str, file_paths: list[str]
     ) -> list[int]:
+        self._ensure_connection()
+
         query = "DELETE FROM file_components WHERE repository_id = %s AND file_path IN %s RETURNING id"
-        
+
         self._cursor.execute(query, (repository_id, tuple(file_paths)))
-        
+
         deleted_ids = [row[0] for row in self._cursor.fetchall()]
         self._connection.commit()
-        
+
         return deleted_ids
 
     def _ensure_file_components_table_exists(self) -> None:
+        self._ensure_connection()
+
         create_file_components_table_query = """
             CREATE TABLE IF NOT EXISTS file_components (
                 id SERIAL PRIMARY KEY,
